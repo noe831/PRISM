@@ -8,11 +8,6 @@ plt.rcParams.update({
     'font.serif': ['Times New Roman'],
     'mathtext.fontset': 'stix' # Makes math look like LaTeX
 })
-#plt.rcParams.update({
-#    'font.size': 10,
-#    'font.family': 'sans-serif',
-#    'font.sans-serif': ['Arial']
-#})
 
 def generate_telemetry_load(n_joints, duration_sec=10, frequency_hz=100):
     """Simulates real-time joint telemetry with Gaussian noise."""
@@ -65,7 +60,7 @@ def plot_results(df):
     plt.xlabel('Time (s)', fontsize=10)
     plt.ylabel('Latency (ms)', fontsize=10)
 
-    plt.savefig('prism_results_visual.png') # Save file to directory
+    plt.savefig('prism_results_visual.png') # Save file 
     print("SUCCESS: Graphic saved as prism_results_visual.png")
 
 # After generating the dataframe

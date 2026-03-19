@@ -3,20 +3,21 @@ import matplotlib.pyplot as plt
 
 # PISM Parameters
 l1, l2 = 100.0, 100.0  # Lengths of modular segments  
-epsilon = 0.05     # Determinant threshold for action, safety halt  
+epsilon = 0.05 # Determinant threshold for action, safety halt  
 
 def calculate_det_j(theta1, theta2):
     # Determinant of Jacobian matrix for a 2-DOF planar manipulator
     #det(J) = l1 * l2 * sin(theta2)
     return l1 * l2 * np.sin(theta2)
 
-# Create a grid for the joint configuration manifold
+# Create grid for joint configuration manifold
 t1 = np.linspace(-np.pi, np.pi, 100)
 t2 = np.linspace(-np.pi, np.pi, 100)
 T1, T2 = np.meshgrid(t1, t2)
 Z = calculate_det_j(T1, T2)
 
-# Plot the safe operating envelope (omega) based on the determinant of the Jacobian
+# Plot the safe operating envelope (omega) 
+# based on the determinant of the Jacobian
 plt.figure(figsize=(10, 8))
 cp = plt.contourf(T1, T2, np.abs(Z), cmap='viridis', levels=20)
 plt.colorbar(cp, label='|det(J)| - Dexterity Metric')

@@ -14,7 +14,6 @@ def planar_2dof_fk(q):
     """
     x = L1 * np.cos(q[0]) + L2 * np.cos(q[0] + q[1])
     y = L1 * np.sin(q[0]) + L2 * np.sin(q[0] + q[1])
-    #print("""DEBUG: FK Output - x: {:.2f}, y: {:.2f} for q: [{:.2f}, {:.2f}]""".format(x, y, theta1, theta2))
     return np.array([x, y])
 
 def get_det_j_numerical(q1, q2):
@@ -31,7 +30,7 @@ def get_det_j_numerical(q1, q2):
 
 def get_jacobian(q, forward_kinematics_func, epsilon=1e-6):
     """
-    Numerically computes the Jacobian J(theta).
+    Numerically compute the Jacobian J(theta).
     Supports n-dimensions state matrices.
     """
     n = len(q)
@@ -59,7 +58,8 @@ def sovereign_observer(q, fk_func):
     det_J = np.linalg.det(J) if J.shape[0] == J.shape[1] else np.linalg.norm(J)
     
     # Singularity stress test (threshold epsilon)
-    # deterministic halt if |det(J)| < epsilon, indicating proximity to singularity
+    # deterministic halt if |det(J)| < epsilon,
+    # indicating proximity to singularity
     epsilon = 0.05
     is_safe = np.abs(det_J) > epsilon
     
@@ -70,8 +70,10 @@ def sovereign_observer(q, fk_func):
 
 # Simulation Loop for Demo
 for t in range(100):
-    simulated_q = np.array([0.5, np.sin(t * 0.1)]) # Simulate movement toward 0
-    # planar_2dof_fk is the Forward Kinematic (FK) model, the mapping from joint angles q to end-effector coordinates (x, y)
+    # Simulate movement toward 0
+    simulated_q = np.array([0.5, np.sin(t * 0.1)])
+    # planar_2dof_fk is the Forward Kinematic (FK) model, 
+    # the mapping from joint angles q to end-effector coordinates (x, y)
     safe, metric, dt = sovereign_observer(simulated_q, planar_2dof_fk)
     
     if not safe:

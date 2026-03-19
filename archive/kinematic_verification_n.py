@@ -16,7 +16,7 @@ def planar_2dof_fk(q):
 
 def get_jacobian(q, forward_kinematics_func, epsilon=1e-6):
     """
-    Numerically computes the Jacobian J(theta).
+    Numerically compute Jacobian J(theta).
     Supports n-dimensions state matrices.
     """
     n = len(q)
@@ -33,7 +33,7 @@ def get_jacobian(q, forward_kinematics_func, epsilon=1e-6):
 
 def sovereign_observer(q, fk_func):
     """
-    The Independent Observer Pattern (PRISM Framework).
+    The Independent Observer Pattern (PRISM framework).
     Performs real-time kinematic auditing.
     Returns safety status, manipulability index, and latency.
     """
@@ -55,8 +55,10 @@ def sovereign_observer(q, fk_func):
 
 # Simulation Loop for Demo
 for t in range(100):
-    simulated_q = np.array([0.5, np.sin(t * 0.1)]) # Simulate movement toward 0
-    # planar_2dof_fk is the Forward Kinematic (FK) model, the mapping from joint angles q to end-effector coordinates (x, y)
+    # Simulate movement toward 0
+    simulated_q = np.array([0.5, np.sin(t * 0.1)])
+    # planar_2dof_fk is the Forward Kinematic (FK) model,
+    # the mapping from joint angles q to end-effector coordinates (x, y)
     safe, metric, dt = sovereign_observer(simulated_q, planar_2dof_fk)
     
     if not safe:
