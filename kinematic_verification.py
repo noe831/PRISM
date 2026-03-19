@@ -1,13 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parameters
-l1, l2 = 1.0, 1.0  # Lengths of modular segments  
-epsilon = 0.1      # Determinant threshold for action, safety halt  
+# PISM Parameters
+l1, l2 = 100.0, 100.0  # Lengths of modular segments  
+epsilon = 0.05     # Determinant threshold for action, safety halt  
 
 def calculate_det_j(theta1, theta2):
     # Determinant of Jacobian matrix for a 2-DOF planar manipulator
-    # det(J) = l1 * l2 * sin(theta2)
+    #det(J) = l1 * l2 * sin(theta2)
     return l1 * l2 * np.sin(theta2)
 
 # Create a grid for the joint configuration manifold
